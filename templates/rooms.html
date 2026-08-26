@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Rooms</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <h2>Hostel Management System</h2>
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout-btn">
+            Logout
+        </a>
+
+    </nav>
+
+
+    <div class="page-container">
+
+        <div class="page-header">
+
+            <h1>Room Management</h1>
+
+            <a
+                href="{{ url_for('add_room') }}"
+                class="btn">
+                + Add Room
+            </a>
+
+        </div>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% for category, message in messages %}
+
+                <div class="alert {{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endwith %}
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Room</th>
+                        <th>Block</th>
+                        <th>Floor</th>
+                        <th>Capacity</th>
+                        <th>Occupied</th>
+                        <th>Available Beds</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for room in rooms %}
+
+                    <tr>
+
+                        <td>{{ room.room_number }}</td>
+
+                        <td>{{ room.block }}</td>
+
+                        <td>{{ room.floor }}</td>
+
+                        <td>{{ room.capacity }}</td>
+
+                        <td>{{ room.occupied_beds }}</td>
+
+                        <td>
+                            {{ room.capacity - room.occupied_beds }}
+                        </td>
+
+                        <td>
+
+                            <span class="status">
+                                {{ room.status }}
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

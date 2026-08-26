@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Add Student</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <h1>Add Student</h1>
+
+        <form method="POST">
+
+            <label>Student ID</label>
+
+            <input
+                type="text"
+                name="student_id"
+                required
+            >
+
+
+            <label>Name</label>
+
+            <input
+                type="text"
+                name="name"
+                required
+            >
+
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                name="email"
+            >
+
+
+            <label>Phone</label>
+
+            <input
+                type="text"
+                name="phone"
+            >
+
+
+            <label>Gender</label>
+
+            <select name="gender">
+
+                <option value="Male">Male</option>
+
+                <option value="Female">Female</option>
+
+                <option value="Other">Other</option>
+
+            </select>
+
+
+            <label>Course</label>
+
+            <input
+                type="text"
+                name="course"
+                placeholder="B.Tech CSE"
+            >
+
+
+            <label>Year</label>
+
+            <select name="year">
+
+                <option value="1">1st Year</option>
+
+                <option value="2">2nd Year</option>
+
+                <option value="3">3rd Year</option>
+
+                <option value="4">4th Year</option>
+
+            </select>
+
+
+            <label>Department</label>
+
+            <input
+                type="text"
+                name="department"
+                placeholder="Computer Science"
+            >
+
+
+            <label>Address</label>
+
+            <textarea
+                name="address"
+                rows="4">
+            </textarea>
+
+
+            <button type="submit">
+                Add Student
+            </button>
+
+            <a
+                href="{{ url_for('students') }}"
+                class="cancel-btn">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

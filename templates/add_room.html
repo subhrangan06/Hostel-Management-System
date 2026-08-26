@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Add Room</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <h1>Add New Room</h1>
+
+        <form method="POST">
+
+            <label>Room Number</label>
+
+            <input
+                type="text"
+                name="room_number"
+                placeholder="A-101"
+                required
+            >
+
+
+            <label>Block</label>
+
+            <input
+                type="text"
+                name="block"
+                placeholder="A"
+                required
+            >
+
+
+            <label>Floor</label>
+
+            <input
+                type="number"
+                name="floor"
+                min="0"
+                required
+            >
+
+
+            <label>Capacity</label>
+
+            <input
+                type="number"
+                name="capacity"
+                min="1"
+                required
+            >
+
+
+            <button type="submit">
+                Add Room
+            </button>
+
+            <a
+                href="{{ url_for('rooms') }}"
+                class="cancel-btn">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

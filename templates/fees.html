@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Fees</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <h2>Hostel Management System</h2>
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout-btn">
+            Logout
+        </a>
+
+    </nav>
+
+
+    <div class="page-container">
+
+        <h1>Hostel Fees</h1>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Student ID</th>
+                        <th>Amount</th>
+                        <th>Due Date</th>
+                        <th>Payment Date</th>
+                        <th>Status</th>
+                        <th>Payment Method</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for fee in fees %}
+
+                    <tr>
+
+                        <td>{{ fee.student_id }}</td>
+
+                        <td>₹{{ fee.amount }}</td>
+
+                        <td>{{ fee.due_date }}</td>
+
+                        <td>{{ fee.payment_date or "Not Paid" }}</td>
+
+                        <td>{{ fee.status }}</td>
+
+                        <td>
+                            {{ fee.payment_method or "-" }}
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td colspan="6">
+                            No fee records found.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

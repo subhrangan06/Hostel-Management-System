@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Complaints</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <h2>Hostel Management System</h2>
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="logout-btn">
+            Logout
+        </a>
+
+    </nav>
+
+
+    <div class="page-container">
+
+        <h1>Complaints</h1>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% for category, message in messages %}
+
+                <div class="alert {{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endwith %}
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Student ID</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Update</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for complaint in complaints %}
+
+                    <tr>
+
+                        <td>
+                            {{ complaint.student_id }}
+                        </td>
+
+                        <td>
+                            {{ complaint.complaint_type }}
+                        </td>
+
+                        <td>
+                            {{ complaint.description }}
+                        </td>
+
+                        <td>
+                            {{ complaint.created_at }}
+                        </td>
+
+                        <td>
+                            {{ complaint.status }}
+                        </td>
+
+                        <td>
+
+                            <form
+                                method="POST"
+                                action="{{ url_for('update_complaint', id=complaint.id) }}">
+
+                                <select name="status">
+
+                                    <option value="Pending">
+                                        Pending
+                                    </option>
+
+                                    <option value="In Progress">
+                                        In Progress
+                                    </option>
+
+                                    <option value="Resolved">
+                                        Resolved
+                                    </option>
+
+                                </select>
+
+                                <button type="submit">
+                                    Update
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td colspan="6">
+                            No complaints found.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
